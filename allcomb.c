@@ -1,69 +1,42 @@
-// C++ program
-#include <bits/stdc++.h>
-using namespace std;
+// C program to print all permutations with duplicates allowed
+#include <stdio.h>
+#include <string.h>
 
-// Function to generate permutations of
-// at most X elements from array arr[]
-void differentFlagPermutations(int X, vector<string> arr)
+/* Function to swap values at two pointers */
+void swap(char *x, char *y)
 {
-	vector<string> ml;
-	ml = arr;
-	
-	for(int i = 0; i < ml.size(); i++)
-	{
-		cout << ml[i] << " ";
-	}
-
-	int count = ml.size();
-
-	// Traverse all possible lengths
-	for(int z = 0; z < X - 1; z++)
-	{
-		
-		// Stores all combinations
-		// of length z
-		vector<string> tmp;
-		
-		// Traverse the array
-		for(int i = 0; i < arr.size(); i++)
-		{
-			for(int k = 0; k < ml.size(); k++)
-			{
-				if (arr[i] != ml[k])
-				{
-					
-					// Generate all
-					// combinations of length z
-					tmp.push_back(ml[k] + arr[i]);
-					count += 1;
-				}
-			}
-		}	
-		
-		// Print all combinations of length z
-		for(int i = 0; i < tmp.size(); i++)
-		{
-			cout << tmp[i] << " ";
-		}
-		
-		// Replace all combinations of length z - 1
-		// with all combinations of length z
-		ml = tmp;
-	}
+	char temp;
+	temp = *x;
+	*x = *y;
+	*y = temp;
 }
 
-// Driver Code
+/* Function to print permutations of string
+This function takes three parameters:
+1. String
+2. Starting index of the string
+3. Ending index of the string. */
+void permute(char *a, int l, int r)
+{
+int i;
+if (l == r)
+	printf("%s ", a);
+else
+{
+	for (i = l; i <= r; i++)
+	{
+		swap((a+l), (a+i));
+		permute(a, l+1, r);
+		swap((a+l), (a+i)); //backtrack
+	}
+}
+}
+
+/* Driver program to test above functions */
 int main()
 {
-	
-	// Given array
-	vector<string> arr{ "c", "a", "b" };
-	
-	// Given X
-	int X = 2;
-	
-	differentFlagPermutations(X, arr);
-	
+	char str[] = "A18";
+	int n = strlen(str);
+	permute(str, 0, n-1);
 	return 0;
 }
-
