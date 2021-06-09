@@ -33,10 +33,14 @@ else
 }
 
 /* Driver program to test above functions */
-int main()
+int main(int argc, char **argv)
 {
-	char str[] = "ABC";
-	int n = strlen(str);
-	permute(str, 0, n-1);
+	// char str[] = *argv[0];
+	if (argc == 1) {
+		printf("Inga argument angivna. Avbryter...\n");
+		return(0);
+	}
+	int n = strlen(argv[1]);
+	permute(argv[1], 0, n-1);
 	return 0;
 }
