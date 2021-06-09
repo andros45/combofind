@@ -35,7 +35,7 @@ else
 /* Driver program to test above functions */
 int main()
 {
-	char str[] = "A18";
+	char str[] = "ABC";
 	int n = strlen(str);
 	permute(str, 0, n-1);
 	return 0;
