@@ -18,7 +18,9 @@ This function takes three parameters:
 3. Ending index of the string. */
 void permute(char *a, int l, int r)
 {
+
 int i;
+
 if (l == r)
 	printf("%s ", a);
 else
